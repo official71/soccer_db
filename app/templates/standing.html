@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+  <style>
+    body{ 
+      font-size: 15pt;
+      font-family: arial;
+    }
+  </style>
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <title>Standing -- W4111 Soccer Database</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <h3>Standing -- W4111 Soccer Database</h3>
+  </div>
+
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="/">home</a></li>
+      <li><a href="/leagues">leagues</a></li>
+      <li><a href="/league?lid={{league['lid']}}">{{league['lname']}}</a></li>
+      <li class="active">{{season['yr_beg']}} - {{season['yr_end']}}</li>
+    </ol>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <img src={{league['llogo']}} style="max-width:300px; max-height:500px">
+      </div>
+
+      <div class="col-md-8">
+        <h1>Season {{season['yr_beg']}}/{{season['yr_end']}}</h1>
+        <h2>{{league['lname']}}</h2>
+        <table border="0">
+          <tr>
+            <td style="padding-right: 10px;"><strong>First match day</strong></td>
+            <td>{{season['date_beg']}}</td>
+          </tr>
+          <tr>
+            <td style="padding-right: 10px;"><strong>Last match day</strong></td>
+            <td>{{season['date_end']}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div style="height: 20px; width:100%"></div>
+    
+    <h3>Season standing</h3>
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table">
+          <tr>
+            <th>Pos</th>
+            <th colspan="2">Team</th>
+            <th>Pld</th>
+            <th>W</th>
+            <th>D</th>
+            <th>L</th>
+            <th>GF</th>
+            <th>GA</th>
+            <th>GD</th>
+            <th>Pts</th>
+            <th>Qualification or relegation</th>
+          </tr>
+          {% for sd in standing %}
+          {% if sd['stat'] == "ecl" %}
+          <tr bgcolor="#A9DFBF">
+          {% elif sd['stat'] == "ecl_qualify" %}
+          <tr bgcolor="#D5F5E3">
+          {% elif sd['stat'] == "promote" %}
+          <tr bgcolor="#A9DFBF">
+          {% elif sd['stat'] == "promote_qualify" %}
+          <tr bgcolor="#D5F5E3">
+          {% elif sd['stat'] == "relegate" %}
+          <tr bgcolor="#FFBBBB">
+          {% elif sd['stat'] == "relegate_qualify" %}
+          <tr bgcolor="#FADBD8">
+          {% else %}
+          <tr>
+          {% endif %}
+            <td>{{sd['pos']}}</td>
+            <td style="max-width:50px; max-height:50px"><img src={{sd['tlogo']}} style="max-height:50%; max-width:50%"></td>
+            <td><a href="/team?tid={{sd['tid']}}">{{sd['tname']}}</a></td>
+            <td>{{sd['pld']}}</td>
+            <td>{{sd['win']}}</td>
+            <td>{{sd['draw']}}</td>
+            <td>{{sd['loss']}}</td>
+            <td>{{sd['gf']}}</td>
+            <td>{{sd['ga']}}</td>
+            <td>{{sd['gd']}}</td>
+            <td>{{sd['pts']}}</td>
+            {% if sd['stat'] == "ecl" %}
+            <td>Qualification to European Champions League</td>
+            {% elif sd['stat'] == "ecl_qualify" %}
+            <td>Qualification to European Champions League kick-off stage</td>
+            {% elif sd['stat'] == "promote" %}
+            <td>Promotion to <a href="/league?lid={{league['plid']}}">{{league['pname']}}</a></td>
+            {% elif sd['stat'] == "promote_qualify" %}
+            <td>Qualification to <a href="/league?lid={{league['plid']}}">{{league['pname']}}</a> promotion kick-off match</td>
+            {% elif sd['stat'] == "relegate" %}
+            <td>Relegation to <a href="/league?lid={{league['rlid']}}">{{league['rname']}}</a></td>
+            {% elif sd['stat'] == "relegate_qualify" %}
+            <td>Relegation to <a href="/league?lid={{league['rlid']}}">{{league['rname']}}</a> relagation kick-off match</td>
+            {% else %}
+            <td></td>
+            {% endif %}
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+    
+    <div style="height: 20px; width:100%"></div>
+  </div>
+
+</body>
+
+
+</html>

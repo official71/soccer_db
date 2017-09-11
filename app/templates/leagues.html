@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+  <style>
+    body{ 
+      font-size: 15pt;
+      font-family: arial;
+    }
+  </style>
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <title>League -- W4111 Soccer Database</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <h3>Leagues -- W4111 Soccer Database</h3>
+  </div>
+
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="/">home</a></li>
+      <li class="active">leagues</li>
+    </ol>
+  </div>
+
+  <div class="container">
+    <form class="form-inline" method="GET" action="/leagues">
+      <div class="form-group" style="height: 100%; width:10px"></div>
+      <div class="form-group">
+        <label for="filter_country">Country</label>
+        <select class="form-control" name="filter_country" id="filter_country">
+          <option>All</option>
+          {% for c in countries %}
+          <option>{{c}}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-group" style="height: 100%; width:10px"></div>
+      <div class="form-group">
+        <label for="sort_by">Sort by</label>
+        <select class="form-control" name="sort_by" id="sort_by">
+          <option>-</option>
+          <option>Name A-Z</option>
+          <option>Name Z-A</option>
+          <option>Country</option>
+          <option>Year founded</option>
+          <option># Teams</option>
+          <option># ECL qualifications</option>
+        </select>
+      </div>
+      <div class="form-group" style="height: 100%; width:30px"></div>
+      <button type="submit" class="btn btn-default">Refresh</button>
+    </form>
+  </div>
+
+  <div style="height: 10px; width:100%"></div>
+
+  <div class="container">
+    <table class="table table-hover">
+      <tr>
+        <th>#</th>
+        <th colspan="2">League</th>
+        <th>Founded in</th>
+        <th>Country (level)</th>
+        <th>Number of teams</th>
+        <th>Number of <abbr title="Qualified for European Champions League. The 0.5 in number indicates extra qualifying match(es) are needed to acquire this position">ECL qualifications</abbr></th>
+        <th>Number of teams <abbr title="The 0.5 in number indicates extra qualifying match(es) are needed to acquire this position">promoted</abbr></th>
+        <th>Number of teams <abbr title="The 0.5 in number indicates extra qualifying match(es) are needed to acquire this position">relegated</abbr></th>
+      </tr>
+      {% for l in leagues %}
+      <tr>
+      <td>{{l['ind']}}</td>
+      <td style="max-width:100px; max-height:100px"><img src={{l['logo']}} style="max-height:100%; max-width:100%"></td>
+      <td><a href="league?lid={{l['lid']}}">{{l['name']}}</a></td>
+      <td>{{l['year']}}</td>
+      <td>{{l['country']}} ({{l['level']}})</td>
+      <td>{{l['nrt']}}</td>
+      <td>{{l['nre']}}</td>
+      <td>{{l['nrp']}}</td>
+      <td>{{l['nrr']}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+</body>
+
+
+</html>

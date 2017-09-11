@@ -1,0 +1,31 @@
+id,fname,mname,lname,nation,dob,height,weight
+1,Arsène,,Wenger,France,10/22/1949,186,76
+2,Petr,,Cech,Czech Republic,5/20/1982,196,91
+3,Laurent,,Koscielny,France,9/10/1985,186,75
+4,Per,,Mertesacker,Germany,9/29/1984,198,90
+5,Kieran,,Gibbs,England,26 Sep 1989,178,70
+6,Nacho,,Monreal,Spain,26 Feb 1986,178,72
+7,Héctor,,Bellerín,Spain,19 Mar 1995,187,81
+8,Francis,,Coquelin,France,13 May 1991,178,73
+9,Mohamed,,El Neny,Egypt,11 Jul 1992,180,70
+10,Aaron,,Ramsey,Wales,26 Dec 1990,178,76
+11,Alex,,Oxlade-Chamberlain,England,15 Aug 1993,180,70
+12,Mesut,,Özil,Germany,15 Oct 1988,180,70
+13,Olivier,,Giroud,France,30 Sep 1986,192,88
+14,Alexis,,Sanchez,Chile,19 Dec 1988,171,70
+15,Danny,,Welbeck,England,26 Nov 1990,185,73
+16,Theo,,Walcott,England,16 Mar 1989,176,71
+17,Steve,,Bould,England,16 Nov 1962,193,89
+18,José,,Mourinho,Portugal,26 Jan 1963,179,70
+19,Antonio,,Conte,Italy,31 Jul 1969,178,71
+20,Thibaut,,Courtois,Belgium,11 May 1992,197,83
+21,Gary,,Cahill,England,19 Dec 1985,188,71
+22,César,,Azpilicueta,Spain,8/28/1989,178,70
+23,Cesc,,Fàbregas,Spain,5/4/1987,180,69
+24,Eden,,Hazard,Belgium,1/7/1991,170,69
+25,Diego,,Costa,Spain,10/7/1988,186,78
+26,,,Pedro,Spain,7/28/1987,169,64
+27,Martin,,Atkinson,England,3/31/1971,,
+28,Michael,,Oliver,England,,,
+29,Craig,,Pawson,England,,,
+30,Zinédine,,Zidane,France,6/23/1972,180,74

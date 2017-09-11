@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+  <style>
+    body{ 
+      font-size: 15pt;
+      font-family: arial;
+    }
+  </style>
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <title>League -- W4111 Soccer Database</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <h3>League -- W4111 Soccer Database</h3>
+  </div>
+
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="/">home</a></li>
+      <li><a href="/leagues">leagues</a></li>
+      <li class="active">{{league['name']}}</li>
+    </ol>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <img src={{league['logo']}} style="max-width:300px; max-height:500px">
+      </div>
+
+      <div class="col-md-8">
+        <h1>{{league['name']}}</h1>
+        <table border="0">
+          <tr>
+            <td style="padding-right: 30px;"><strong>Country</strong></td>
+            <td>{{league['country']}}</td>
+          </tr>
+          <tr>
+            <td style="padding-right: 30px;"><strong>Level</strong></td>
+            <td>{{league['level']}}</td>
+          </tr>
+          <tr>
+            <td style="padding-right: 30px;"><strong>Year founded</strong></td>
+            <td>{{league['year']}}</td>
+          </tr>
+          <tr>
+            <td style="padding-right: 30px;"><strong>Number of teams</strong></td>
+            <td>{{league['nrt']}}</td>
+          </tr>
+          <tr>
+            <td style="padding-right: 30px;"><strong>Number of ECL qualified</strong></td>
+            <td>{{league['nre']}}</td>
+          </tr>
+          <tr>
+            <td style="padding-right: 30px;"><strong>Number of teams promoted</strong></td>
+            <td>{{league['nrp']}}</td>
+          </tr>
+          <tr>
+            <td style="padding-right: 10px;"><strong>Promote to</strong></td>
+            <td><a href="/league?lid={{league['prom']}}">{{league['pname']}}</a></td>
+          </tr>
+          <tr>
+            <td style="padding-right: 10px;"><strong>Number of teams relegated</strong></td>
+            <td>{{league['nrr']}}</td>
+          </tr>
+          <tr>
+            <td style="padding-right: 10px;"><strong>Relegate to</strong></td>
+            <td><a href="/league?lid={{league['rele']}}">{{league['rname']}}</a></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    
+    <div style="height: 20px; width:100%"></div>
+    <h3>Seasons</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <table class="table table-hover">
+          <tr><th>Season</th><th>Champion</th></tr>
+          {% for s in seasons %}
+          <tr>
+            <td><a href="/standing?sid={{s['sid']}}&lid={{league['lid']}}">{{s['yr_beg']}}/{{s['yr_end']}}</a></td>
+            <td><a href="/team?tid={{s['tid']}}">{{s['tname']}}</a></td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+
+
+</html>

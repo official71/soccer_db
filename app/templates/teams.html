@@ -1,0 +1,189 @@
+<!doctype html>
+<html>
+  <style>
+    body{ 
+      font-size: 15pt;
+      font-family: arial;
+    }
+  </style>
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <title>Team -- W4111 Soccer Database</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <h3>Teams -- W4111 Soccer Database</h3>
+  </div>
+
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="/">home</a></li>
+      <li class="active">teams</li>
+    </ol>
+  </div>
+
+  <div class="container">
+    <form class="form-inline" id="refresh" method="GET" action="/teams">
+      <div class="form-group" style="height: 100%; width:10px"></div>
+      <div class="form-group">
+        <label for="filter_country">Country</label>
+        <select class="form-control" name="filter_country" id="filter_country">
+          <option>All</option>
+          {% for c in countries %}
+          <option>{{c}}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-group" style="height: 100%; width:10px"></div>
+      <div class="form-group">
+        <label for="sort_by">Sort by</label>
+        <select class="form-control" name="sort_by" id="sort_by">
+          <option>-</option>
+          <option>Name A-Z</option>
+          <option>Name Z-A</option>
+          <option>Country</option>
+          <option>Year founded</option>
+        </select>
+      </div>
+      <div class="form-group" style="height: 100%; width:30px"></div>
+      <button type="submit" class="btn btn-default">Refresh</button>
+    </form>
+  </div>
+
+  <div style="height: 10px; width:100%"></div>
+
+  <div class="container">
+    <table class="table table-hover">
+      <tr>
+        <th>#</th>
+        <th colspan="2">Team</th>
+        <th>Founded in</th>
+        <th>Country</th>
+      </tr>
+      {% for t in teams %}
+      <tr>
+      <td>{{t['ind']}}</td>
+      <td style="max-width:10px; max-height:10px"><img src={{t['logo']}} style="max-height:50%; max-width:50%"></td>
+      <td><a href="team?tid={{t['tid']}}">{{t['name']}}</a></td>
+      <td>{{t['year']}}</td>
+      <td>{{t['country']}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+  <div style="height: 10px; width:100%"></div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2">
+        <button type="button" class="btn btn-primary" id="add_btn" style="width:100px">+ Add +</button>
+      </div>
+      <div class="col-md-2">
+        <button type="button" class="btn btn-danger" id="del_btn" style="width:100px">- Delete -</button>
+      </div>
+    </div>
+  </div>
+
+  <div style="height: 10px; width:100%"></div>
+  
+  <div id="add_form" class="container" style='display:none;'>
+    <div class="row">
+      <div class="col-md-6">
+        <p><strong>Add the following team to database:</strong></p>
+        <form class="form" id="add" method="POST" action="/teams">
+          <div class="form-group">
+            <label for="add_name">Team name</label>
+            <input type="text" class="form-control" name="add_name" placeholder="e.g. Arsenal">
+          </div>
+          <div class="form-group">
+            <label for="add_country">Country</label>
+            <input type="text" class="form-control" name="add_country" placeholder="e.g. United States">
+          </div>
+          <div class="form-group">
+            <label for="add_year">Year founded</label>
+            <input type="text" class="form-control" name="add_year" placeholder="e.g. 1998">
+          </div>
+          <div class="form-group">
+            <label for="add_logo">Team logo</label>
+            <input type="text" class="form-control" name="add_logo" placeholder="URL to the image file">
+          </div>
+          <div class="form-group">
+            <label for="add_stadium">Home stadium</label>
+            <select class="form-control" name="add_stadium">
+              <option>-</option>
+              {% for s in stadiums %}
+              <option>{{s['name']}} - ({{s['country']}}, {{s['city']}})</option>
+              {% endfor %}
+            </select>
+          </div>
+          <button type="submit" class="btn btn-default" style="width:80px">Add</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="del_form" class="container" style='display:none;'>
+    <div class="row">
+      <div class="col-md-6">
+        <p><strong>Delete the selected team from database:</strong></p>
+        <form class="form-inline" id="del" method="POST" action="/delete_team">
+          <div class="form-group">
+            <label for="delete_team">Select team</label>
+            <select class="form-control" name="delete_team">
+              <option>-</option>
+              {% for t in teams %}
+              <option>{{t['name']}} - ({{t['country']}})</option>
+              {% endfor %}
+            </select>
+          </div>
+          <button type="submit" class="btn btn-default" style="width:80px">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <div style="height: 30px; width:100%"></div>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous">
+  </script>
+
+  <script>
+    //add button
+    $("#add_btn").click(function() {
+      $("#add_form").toggle();
+
+      if ($(this).text() == "+ Add +") {
+        $(this).text("Hide");
+        $(this).removeClass("btn-primary");
+        $(this).addClass("btn-default");
+      } else {
+        $(this).text("+ Add +");
+        $(this).removeClass("btn-default");
+        $(this).addClass("btn-primary");
+      }
+    });
+
+    //del button
+    $("#del_btn").click(function() {
+      $("#del_form").toggle();
+
+      if ($(this).text() == "- Delete -") {
+        $(this).text("Hide");
+        $(this).removeClass("btn-danger");
+        $(this).addClass("btn-default");
+      } else {
+        $(this).text("- Delete -");
+        $(this).removeClass("btn-default");
+        $(this).addClass("btn-danger");
+      }
+    });
+  </script>
+
+</body>
+
+
+</html>

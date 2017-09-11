@@ -1,0 +1,11 @@
+id,name,logo,country,teams,promote,relegate,ecl,year,promote_to,relegate_to
+1,"Premier League","premier_league_england.png","England",20,0,3,3.5,1992,,2
+2,"EFL Championship","efl_championship.png","England",24,3,3,0,1992,1,3
+3,"EFL League One","efl_league_one.png","England",24,3,3,0,1992,2,4
+4,"EFL League Two","efl_league_two.png","England",24,3,3,0,1992,3,
+5,"La Liga","la_liga.png","Spain",20,0,3,3.5,1929,,6
+6,"La Liga 2","la_liga_123.png","Spain",22,3,4,0,1929,5,
+7,"Bundesliga","bundesliga.png","Germany",18,0,2.5,3.5,1963,,8
+8,"2. Bundesliga","2._bundesliga.png","Germany",18,2.5,2.5,0,1974,7,
+9,"Ligue 1","ligue_1.png","France",20,0,3,2.5,1932,,10
+10,"Ligue 2","ligue_2.png","France",20,3,3,0,1933,9,

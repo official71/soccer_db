@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+  <style>
+    body{ 
+      font-size: 15pt;
+      font-family: arial;
+    }
+  </style>
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <title>Team -- W4111 Soccer Database</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <h3>Team -- W4111 Soccer Database</h3>
+  </div>
+
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="/">home</a></li>
+      <li><a href="/teams">teams</a></li>
+      <li class="active">{{team['name']}}</li>
+    </ol>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <img src={{team['logo']}} style="max-width:150px; max-height:150px">
+      </div>
+
+      <div class="col-md-9">
+        <h1>{{team['name']}}</h1>
+        <table border="0">
+          <tr>
+            <td style="padding-right: 10px;"><strong>Country</strong></td>
+            <td>{{team['country']}}</td>
+          </tr>
+          <tr>
+            <td style="padding-right: 10px;"><strong>Year founded</strong></td>
+            <td>{{team['year']}}</td>
+          </tr>
+          <tr>
+            <td style="padding-right: 10px;"><strong>Stadium</strong></td>
+            <td><a href="/stadium?id={{stadium['id']}}">{{stadium['name']}}</a></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div style="height: 20px; width:100%"></div>
+    <h3>Rival Teams</h3>
+    <div class="row">
+      <div class="col-md-4">
+        <table class="table table-hover">
+          <tr><th>Team</th><th>Derby</th></tr>
+          {% for r in rivaries %}
+          <tr>
+            <td><a href="/team?tid={{r['tid']}}">{{r['tname']}}</a></td>
+            <td>{{r['name']}}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+    
+    <div style="height: 20px; width:100%"></div>
+    <h3>Season Standings</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <table class="table table-hover">
+          <tr><th>Season</th><th colspan="2">League</th></tr>
+          {% for sd in standing %}
+          <tr>
+            <td><a href="/standing?sid={{sd['sid']}}&tid={{team['tid']}}&lid={{sd['lid']}}">{{sd['yr_beg']}}/{{sd['yr_end']}}</a></td>
+            <td style="max-width:50px; max-height:50px"><img src={{sd['llogo']}} style="max-height:100%; max-width:100%"></td>
+            <td><a href="league?lid={{sd['lid']}}">{{sd['lname']}}</a></td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+
+    <div style="height: 20px; width:100%"></div>
+    <h3>Coaches History</h3>
+    <div class="row">
+      <div class="col-md-8">
+        <table class="table table-hover">
+          <tr><th>Name</th><th>Role</th><th>From</th><th>To</th><th>Win%</th></tr>
+          {% for c in coaches %}
+          <tr>
+            <td><a href="/coach?id={{c['id']}}">{{c['name']}}</a></td>
+            <td>{{c['role']}}</td>
+            <td>{{c['yr_beg']}}</td>
+            <td>{{c['yr_end']}}</td>
+            <td>{{c['pwin']}}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+
+</html>
