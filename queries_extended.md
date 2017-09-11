@@ -1,17 +1,17 @@
-#Soccer Database Project Two
+# Soccer Database Project Two
 
-##Name and UNI of team members
+## Name and UNI of team members
 Yixia Sun (ys2918)
 
 Yi Qi (yq2211)
 
-##PostgreSQL Account UNI
+## PostgreSQL Account UNI
 
 yq2211
 
-##Modifications to Schema
+## Modifications to Schema
 
-###(1) Composite Types
+### (1) Composite Types
 
 The type created is to store addresses:
 
@@ -53,7 +53,7 @@ SET address='("England","Greater Manchester","Manchester","Old Trafford",null,"S
 WHERE sid=10;
 ```
 
-###(2) Arrays
+### (2) Arrays
 
 A new column *pwin_history* of small integer array type is added to table *coach_works*.
 
@@ -82,7 +82,7 @@ SET pwin_history='{61,67,36}'
 WHERE cid=3 AND tid=4 AND year_begin=2013;
 ```
 
-###(3) Documents
+### (3) Documents
 
 Two columns *wiki_vector* and *wiki_text* are added to the schema of table *teams*:
 
@@ -109,14 +109,14 @@ Both columns store the contents of Wikipedia paragraphs of each team, while *wik
 Data is populated by running a [script](https://bitbucket.org/snippets/official_71/8R6zx) with the URL of the Wikipedia web page and the team ID in database.
 
 
-##SQL Queries
+## SQL Queries
 
 All data populated to database are authentic real-world data the are captured from following resources using scripts or manually:
 
 * [footballdatabase.eu](http://www.footballdatabase.eu)
 * [Wikipedia](https://en.wikipedia.org)
 
-###(1) Noisy neighbors
+### (1) Noisy neighbors
 
 **Objective:** Find pairs of rivalry teams that are closest with each other in distance. Since the *earthdistance* extension is not available, a coarse estimation of distance is applied by calculating the sum of squared difference between the latitude and longitude coordinates of both home stadiums.
 
@@ -152,7 +152,7 @@ LIMIT 5;
 
 ```
 
-###(2) 'So much for the happy ending'
+### (2) 'So much for the happy ending'
 
 **Objective:** Find the managers that managed a team for over one season, had a good opening season but ended in a much less successful one.
 
@@ -193,7 +193,7 @@ WHERE c.cid = temp.cid AND c.pid = p.pid AND t.tid = temp.tid;
 ```
 
 
-###(3) The Big Four
+### (3) The Big Four
 
 **Objective:** Find the *Big Four* in England, which is the four teams most related to terms such as *win*, *champion* and *trophy*.
 

@@ -1,8 +1,8 @@
-#Soccer Database
+# Soccer Database
 
-##Schema
+## Schema
 
-###1. Person
+### 1. Person
 
 ```SQL
 `person_id`		INT
@@ -17,7 +17,7 @@
 PRIMARY KEY		`person_id`
 ```
 
-###2. Coach
+### 2. Coach
 
 ```SQL
 `coach_id`		INT
@@ -35,7 +35,7 @@ FOREIGN KEY		`team_begin` REFERENCES `Team`(`team_id`) ON DELETE SET NULL
 FOREIGN KEY		`team_end` REFERENCES `Team`(`team_id`) ON DELETE SET NULL
 ```
 
-###3. Player
+### 3. Player
 
 ```SQL
 `player_id`		INT
@@ -55,7 +55,7 @@ FOREIGN KEY		`team_begin` REFERENCES `Team`(`team_id`) ON DELETE SET NULL
 FOREIGN KEY		`team_end` REFERENCES `Team`(`team_id`) ON DELETE SET NULL
 ```
 
-###4. Arena
+### 4. Arena
 
 ```SQL
 `arena_id`		INT
@@ -68,7 +68,7 @@ FOREIGN KEY		`team_end` REFERENCES `Team`(`team_id`) ON DELETE SET NULL
 PRIMARY KEY		`arena_id`
 ```
 
-###5. Team
+### 5. Team
 
 ```SQL
 `team_id`		INT
@@ -84,7 +84,7 @@ UNIQUE			`team_name`
 FOREIGN KEY		`arena_id` REFERENCES `Arena`(`arena_id`) ON DELETE NO ACTION
 ```
 
-###6. Season
+### 6. Season
 
 ```SQL
 `season_id`		INT
@@ -97,7 +97,7 @@ PRIMARY KEY		`season_id`
 UNIQUE			(`year_begin`, `year_end`, `date_begin`, `date_end`)
 ```
 
-###7. League
+### 7. League
 
 ```SQL
 `league_id`		INT
@@ -113,7 +113,7 @@ UNIQUE			(`year_begin`, `year_end`, `date_begin`, `date_end`)
 PRIMARY KEY		`league_id`
 ```
 
-###8. Standing
+### 8. Standing
 
 ```SQL
 `standing_id`	INT
@@ -137,7 +137,7 @@ FOREIGN KEY		`league_id` REFERENCES `League`(`league_id`) ON DELETE NO ACTION
 UNIQUE			(`team_id`, `season_id`, `league_id`)
 ```
 
-###9. Match
+### 9. Match
 
 ```SQL
 `match_id`		INT
@@ -166,7 +166,7 @@ FOREIGN KEY		`away_team` REFERENCES `Standing`(`standing_id`)
 
 \* The field `season_id` of the two instances referred by `home_team` and `away_team` must be identical. Same is the field `league_id`.
 
-###10. Player-Works
+### 10. Player-Works
 
 ```SQL
 `player_id`		INT
@@ -187,7 +187,7 @@ FOREIGN KEY		`standing_id` REFERENCES `Standing`(`standing_id`) ON DELETE CASCAD
 FOREIGN KEY		`rent_from` REFERENCES `Team`(`team_id`) ON DELETE SET NULL
 ```
 
-###11. Coach-Works
+### 11. Coach-Works
 
 ```SQL
 `coach_id`		INT
@@ -202,7 +202,7 @@ FOREIGN KEY		`coach_id` REFERENCES `Coach`(`coach_id`) ON DELETE CASCADE
 FOREIGN KEY		`team_id` REFERENCES `Team`(`team_id`) ON DELETE CASCADE
 ```
 
-###12. Player-Plays
+### 12. Player-Plays
 
 ```SQL
 `player_id`		INT
@@ -216,7 +216,7 @@ FOREIGN KEY		`player_id` REFERENCES `Player`(`player_id`) ON DELETE CASCADE
 FOREIGN KEY		`match_id` REFERENCES `Match`(`match_id`) ON DELETE CASCADE
 ```
 
-###13. Player-Scores
+### 13. Player-Scores
 
 ```SQL
 `player_id`		INT

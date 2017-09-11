@@ -1,15 +1,15 @@
-#Soccer Database Project Part Two
+# Soccer Database Project Part Two
 
-##Name and UNI of team members
+## Name and UNI of team members
 Yixia Sun (ys2918)
 
 Yi Qi (yq2211)
 
-##PostgreSQL Account UNI
+## PostgreSQL Account UNI
 
 yq2211
 
-##SQL Queries
+## SQL Queries
 
 All data populated to database are authentic real-world data the are captured from following resources using scripts or manually:
 
@@ -20,7 +20,7 @@ All data populated to database are authentic real-world data the are captured fr
 
 Due to constraint of time, only a small amount of data is populated, which is enough to run the queries but not to give the real-world results.
 
-###(1)
+### (1)
 
 **Objective:** Find names of people who worked for a team as both player and manager, as well as the names of the teams.
 
@@ -54,7 +54,7 @@ WHERE pl.pid=temp.pid AND pl.person_id=p.pid AND t.tid=temp.tid;
 
 ```
 
-###(2)
+### (2)
 
 **Objective:** For each match, when applicable, find the score vs. average player ratings (player overall ratings range 0-100)
 
@@ -91,7 +91,7 @@ WHERE ms.mid=home.mid AND ms.mid=away.mid;
 ```
 
 
-###(3)
+### (3)
 
 **Objective:** Find the names of Arsenal players who scored the most goals in matches against rival teams. (A new table *rivaries* is created for the information of [soccer derbies](https://en.wikipedia.org/wiki/List_of_sports_rivalries_in_the_United_Kingdom#England_and_Wales.23Basketball) that was not included in Part 1)
 
