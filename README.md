@@ -1,16 +1,16 @@
-#Soccer Database Project
+# Soccer Database Project
 
-##URL of Web Application
+## URL of Web Application
 
 [http://104.196.148.***:8111/](obsolete)
 
-##Description of Implementation
+## Description of Implementation
 
 The application is built upon the PostgreSQL soccer database. It allows end-users to query data regarding multiple European soccer leagues, teams(clubs), season standings(results), stadiums and people from the database, as well as insertion and deletion operations. The queries are not straightforward, they require nested operations from different tables and answer questions such as "who ever worked for Arsenal as a manager and what was the winning rate?" or "list all previous seasons and their champions (teams whose position equals to 1) of the Premier League".
 
-##Web Pages of Interest
+## Web Pages of Interest
 
-###(1) Teams
+### (1) Teams
 
 **URL:** [http://104.196.148.***:8111/teams](obsolete)
 
@@ -23,7 +23,7 @@ The application is built upon the PostgreSQL soccer database. It allows end-user
 * **Deleting** an existing team from database is implemented likewise. The input is only a `select` from all teams in database. The deletion form `POST` to another URL but redirects to `/teams` URL after executing the `DELETE FROM teams ...` query to show the results.
 
 
-###(2) Season Standing
+### (2) Season Standing
 
 **URL:** [http://104.196.148.***:8111/standing?sid=2&lid=1](obsolete)
 
