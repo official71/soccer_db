@@ -1,14 +1,5 @@
 # Soccer Database Project Part Two
 
-## Name and UNI of team members
-Yixia Sun (ys2918)
-
-Yi Qi (yq2211)
-
-## PostgreSQL Account UNI
-
-yq2211
-
 ## SQL Queries
 
 All data populated to database are authentic real-world data the are captured from following resources using scripts or manually:
