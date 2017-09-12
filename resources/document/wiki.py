@@ -5,7 +5,7 @@ import argparse
 import re
 from sqlalchemy import *
 
-DATABASEURI = "postgresql://yq2211:1505@35.185.80.252/w4111"
+DATABASEURI = "postgresql://user:password@35.185.80.xxx/w4111"
 
 def main(url, tid, type='text', delimiter=' '):
     try:

@@ -1,14 +1,5 @@
 # Soccer Database Project Two
 
-## Name and UNI of team members
-Yixia Sun (ys2918)
-
-Yi Qi (yq2211)
-
-## PostgreSQL Account UNI
-
-yq2211
-
 ## Modifications to Schema
 
 ### (1) Composite Types
